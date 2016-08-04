@@ -1,3 +1,5 @@
+# [DipDup](https://github.com/AlephAlpha/DipDup)
+
 __DipDup__ is a stack-based esolang inspired by [Joy](http://www.latrobe.edu.au/humanities/research/research-projects/past-projects/joy-programming-language) and [Underload](http://esolangs.org/wiki/Underload).
 
 I think it's Turing complete, but don't know how to prove it.
@@ -5,12 +7,12 @@ I think it's Turing complete, but don't know how to prove it.
 ## Commands
 
 | Command | Name | Description |
-|:-:|:-:|-|
-| `^` | `dip` | `X [P]` → `... X` <br> Save `X`, execute `[P]`, push `X` back. |
-| `_` | `dup` | `X` → `X X` <br> Duplicate `X`. |
-| `!` | `pop` | `X` → <br> Discard `X`. |
-| `:` | `cons` | `X [A]` → `[XA]` <br> Prepend `X` to `[A]`.  |
-| `[X]` | | → `[X]` <br> Push `[X]`. |
+|:--:|:--:|--|
+| `^` | `dip` | `X [P]` → `... X` </br> Save `X`, execute `[P]`, push `X` back. |
+| `_` | `dup` | `X` → `X X` </br> Duplicate `X`. |
+| `!` | `pop` | `X` → </br> Discard `X`. |
+| `:` | `cons` | `X [A]` → `[XA]` </br> Prepend `X` to `[A]`.  |
+| `[X]` | | → `[X]` </br> Push `[X]`. |
 
 Other commands are no-ops.
 
