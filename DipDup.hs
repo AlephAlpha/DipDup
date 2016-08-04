@@ -1,15 +1,10 @@
 import System.Console.Haskeline
+import System.Environment
 import Text.ParserCombinators.ReadP
 
 data Term = C Char | E Expr
 
 type Expr = [Term]
-type Stack = [Expr]
-type Func = Stack -> Stack
-
--- instance Monoid Func where
---     mempty = id
---     mappend = flip (.)
 
 instance Show Term where
     show (C c) = [c]
@@ -21,13 +16,26 @@ instance Read Term where
     readList = readP_to_S readExpr
 
 readTerm :: ReadP Term
-readTerm = (C <$> satisfy (flip notElem "[]")) +++ (E <$> between (char '[') (char ']') readExpr)
+readTerm = (C <$> satisfy (`notElem` "[]")) +++ (E <$> between (char '[') (char ']') readExpr)
 
 readExpr :: ReadP Expr
 readExpr = many readTerm
 
+data Stack = Expr :-: Stack
+
+initStack :: Stack
+initStack = [] :-: initStack
+infixr 5 :-:
+
+top :: Int -> Stack -> [Expr]
+top n (x :-: s)
+    | n <= 0 = []
+    | otherwise = x : top (n - 1) s
+
+type Func = Stack -> Stack
+
 evalTerm :: Term -> Func
-evalTerm (E e) = (e :)
+evalTerm (E e) = (e :-:)
 evalTerm (C '^') = dip
 evalTerm (C '_') = dup
 evalTerm (C '!') = pop
@@ -37,30 +45,39 @@ evalTerm _ = id
 evalExpr :: Expr -> Func
 evalExpr = flip . foldl $ flip evalTerm
 
-eval :: Expr -> Expr
-eval = head . flip evalExpr (repeat [])
+eval :: Int -> Expr -> [Expr]
+eval n = top n . flip evalExpr initStack
 
-dip (x : y : s) = y : evalExpr x s
-dup (x : s) = x : x : s
-pop (x : s) = s
-cons (x : y : s) = (E y : x) : s
+dip :: Func
+dip (x :-: y :-: s) = y :-: evalExpr x s
 
-readEither :: Read a => String -> Either String a
-readEither s = case [x | (x, "") <- reads s] of
-    [x] -> Right x
-    [] -> Left "no parse"
-    _ -> Left "ambigous parse"
+dup :: Func
+dup (x :-: s) = x :-: x :-: s
 
-repl :: InputT IO ()
-repl = do
+pop :: Func
+pop (_ :-: s) = s
+
+cons :: Func
+cons (x :-: y :-: s) = (E y : x) :-: s
+
+rep :: Int -> String -> String
+rep n input = case [x | (x, "") <- reads input] of
+    [x] -> unlines . map show $ eval n x
+    _ -> error "parse error"
+
+repl :: Int -> InputT IO ()
+repl n = do
     minput <- getInputLine "> "
     case minput of
         Nothing -> return ()
         Just input -> do
-            case readEither input of
-                Left s -> outputStrLn s
-                Right e -> outputStrLn . show $ eval e
-            repl
+            catch (outputStrLn $ rep n input) $ \e -> outputStrLn $ show (e :: SomeException)
+            repl n
 
 main :: IO ()
-main = runInputT defaultSettings repl
+main = do
+    args <- getArgs
+    case args of
+        [] -> runInputT defaultSettings $ repl 1
+        ["-d", n] -> runInputT defaultSettings . repl $ read n
+        (file : _) -> readFile file >>= putStrLn . rep 1
