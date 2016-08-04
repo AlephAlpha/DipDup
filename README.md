@@ -8,11 +8,11 @@ I think it's Turing complete, but don't know how to prove it.
 
 | Command | Name | Description |
 |:--:|:--:|--|
-| `^` | `dip` | `X [P]` → `... X` </br> Save `X`, execute `[P]`, push `X` back. |
-| `_` | `dup` | `X` → `X X` </br> Duplicate `X`. |
-| `!` | `pop` | `X` → </br> Discard `X`. |
-| `:` | `cons` | `X [A]` → `[XA]` </br> Prepend `X` to `[A]`.  |
-| `[X]` | | → `[X]` </br> Push `[X]`. |
+| `^` | `dip` | `X [P]` → `... X` : Save `X`, execute `[P]`, push `X` back. |
+| `_` | `dup` | `X` → `X X` : Duplicate `X`. |
+| `!` | `pop` | `X` →  : Discard `X`. |
+| `:` | `cons` | `X [A]` → `[XA]` : Prepend `X` to `[A]`.  |
+| `[X]` | | → `[X]` : Push `[X]`. |
 
 Other commands are no-ops.
 
