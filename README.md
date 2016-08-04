@@ -1,3 +1,5 @@
+# [DipDup](https://github.com/AlephAlpha/DipDup)
+
 __DipDup__ is a stack-based esolang inspired by [Joy](http://www.latrobe.edu.au/humanities/research/research-projects/past-projects/joy-programming-language) and [Underload](http://esolangs.org/wiki/Underload).
 
 I think it's Turing complete, but don't know how to prove it.
