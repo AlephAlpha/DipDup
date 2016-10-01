@@ -46,7 +46,7 @@ _^!
 
 A natural number `[N]` is a quoted function that `X [P] N` returns `X [P] (N-1) P`.
 
-Please add an issue if you find a better way to represent natural numbers.
+Please add an issue if you find a better representation of natural numbers.
 
 ### Zero
 
@@ -86,7 +86,7 @@ Please add an issue if you find a better way to represent natural numbers.
 
 ## Bools
 
-Please add an issue if you find a better way to represent bools.
+Please add an issue if you find a better representation of bools.
 
 ### False
 
