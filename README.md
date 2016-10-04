@@ -44,7 +44,7 @@ _^!
 
 ## Natural numbers
 
-A natural number `[N]` is a quoted function that `X [P] N` returns `X [P] (N-1) P`.
+A natural number `[N]` is a quoted function such that `X [P] N` returns `X [P] (N-1) P`.
 
 Please add an issue if you find a better representation of natural numbers.
 
