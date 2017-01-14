@@ -22,7 +22,7 @@ Like `cons` is Lisp, or `:` is Haskell. If the original stack is `...b[a]`, the 
 
 This one is a little complecated. If the original stack is `...c[b]a`, then it will first pop `a`, then execute `b` as a program on the stack `...c`, and finally push `a` back. `dip` is written as `^` in DipDup.
 
-### list
+### lists
 
 A list is a list of lists or commands, written inside square brackets. There is no space or any other separator between items in a list. In the program, a list will be pushed onto the stack.
 
@@ -48,7 +48,6 @@ Dipdup is a stack-based language. Everything in the stack is a list. The initial
 [_:]_:
 ```
 
-<!---
 ## Some Useful Snippets
 
 ### Execute
@@ -57,7 +56,7 @@ Dipdup is a stack-based language. Everything in the stack is a list. The initial
 _^!
 ```
 
-Like `i` in Joy or `^` in Underload.
+Like `i` in Joy or `^` in Underload. If the original stack is `...b[a]`, then it will execute `a` as a program on the stack `...b`.
 
 ### Swap
 
@@ -65,8 +64,9 @@ Like `i` in Joy or `^` in Underload.
 []:^
 ```
 
-Like `swap` in Joy or `~` in Underload.
+Like `swap` in Joy or `~` in Underload. If the original stack is `...cba`, the new stack will be `...cab`.
 
+<!---
 ## Natural numbers
 
 A natural number `[N]` is a quoted function such that `X [P] N` returns `X [P] (N-1) P`.
