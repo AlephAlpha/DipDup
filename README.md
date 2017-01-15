@@ -2,7 +2,7 @@
 
 __DipDup__ is a stack-based esoteric programming language inspired by [Underload](http://esolangs.org/wiki/Underload) and based on [Joy](http://www.latrobe.edu.au/humanities/research/research-projects/past-projects/joy-programming-language).
 
-[Joy](https://en.wikipedia.org/wiki/Joy_(programming_language)), invented by Manfred von Thun in 2001, is a stack-based, concatenative, purely functional programming language. Dipdup is a subset of Joy. From the 202 commands in Joy, I chose four: `dip`, `dup`, `pop`, and `cons`, and denote them by four symbols: `^`, `_`, `!`, and `:`.
+[Joy](https://en.wikipedia.org/wiki/Joy_(programming_language)), invented by Manfred von Thun in 2001, is a stack-based, concatenative, purely functional programming language. Dipdup is a subset of Joy. From the 202 commands in Joy, I chose four: `dip`, `dup`, `pop`, and `cons`, and denoted them by four symbols: `^`, `_`, `!`, and `:`.
 
 ## Stack
 
@@ -24,13 +24,11 @@ Like `cons` is Lisp, or `:` is Haskell. If the original stack is `...b[a]`, the 
 
 ### `dip`
 
-This one is a little complecated. If the original stack is `...cb[a]`, then it will first pop `b`, then execute `[a]` as a program on the stack `...c`, and finally push `b` back. `dip` is written as `^` in DipDup.
-
-`dip` has an important property: for two commands `f` and `g`, the snippet `fg` is equivalent to `g[f]^`.
+This one is a little complecated. If the original stack is `...cb[a]`, it first pops `b` and `[a]`, then executes `[a]` as a program on the stack `...c`, and finally pushes `b` back. `dip` is written as `^` in DipDup.
 
 ### Lists
 
-A list is a list of lists or commands, written inside square brackets. There is no space or any other separator between items in a list. A list can be seemed as a program or a quoted function, so it can act on the stack with the help of `dip`. In a program, a list will be pushed onto the stack.
+A list is a list of lists or commands, written inside square brackets, without any space or other separator between its items. A list can be seemed as a program or a quoted function, so it can act on the stack with the help of `dip`. In a program, a list is pushed onto the stack.
 
 ### No-ops
 
@@ -91,62 +89,6 @@ To show that DipDup is Turing complete, it suffices to implement the three primi
 ```
 
 This proof is inspired by [a proof of Turing completeness of Underload](http://esolangs.org/wiki/Underload#Unlambda_to_Underload).
-
-<!---
-## Natural Numbers
-
-A natural number `[N]` is a quoted function such that `X [P] N` returns `X [P] (N-1) P`.
-
-### Zero
-
-```
-[!]
-```
-
-### One
-
-```
-[[!][_]^^_^!]
-```
-
-### Two
-
-```
-[[[!][_]^^_^!][_]^^_^!]
-```
-
-### Succ
-
-```
-[[_]^^_^!]:
-```
-
-### Add
-
-```
-[[[[_]^^_^!]:]]^_^!
-```
-
-### Multuiply
-
-```
-[[[!]]^]^[[[[[[_]^^_^!]:]]^_^!]:]^_^!
-```
-
-## Bools
-
-### False
-
-```
-[!]
-```
-
-### True
-
-```
-[[!]^]
-```
---->
 
 ## About This Interpreter
 
