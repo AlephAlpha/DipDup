@@ -22,10 +22,10 @@ readExpr :: ReadP Expr
 readExpr = many readTerm
 
 data Stack = Expr :-: Stack
+infixr 5 :-:
 
 initStack :: Stack
 initStack = [] :-: initStack
-infixr 5 :-:
 
 top :: Int -> Stack -> [Expr]
 top n (x :-: s)
