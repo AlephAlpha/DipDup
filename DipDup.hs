@@ -71,7 +71,7 @@ repl n = do
     case minput of
         Nothing -> return ()
         Just input -> do
-            catch (outputStrLn $ rep n input) $ \e -> outputStrLn $ show (e :: SomeException)
+            catch (outputStr $ rep n input) $ \e -> outputStrLn $ show (e :: SomeException)
             repl n
 
 main :: IO ()
