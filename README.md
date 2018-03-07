@@ -6,7 +6,7 @@ __DipDup__ is a stack-based esoteric programming language inspired by [Underload
 
 ## Stack
 
-Dipdup is a stack-based language. Everything in the stack is a list. Every command is a function that maps stacks to stacks. The initial stack is an infinite stack of emepty lists. After the execution, the top of the stack will be printed.
+Dipdup is a stack-based language. Everything in the stack is a list. Every command is a function that maps stacks to stacks. The initial stack is an infinite stack of emepty lists. After the execution, the top of the stack will be printed (without the outmost brackets).
 
 ## Commands
 
