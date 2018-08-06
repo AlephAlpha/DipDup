@@ -2,7 +2,7 @@
 
 __DipDup__ is a stack-based esoteric programming language inspired by [Underload](http://esolangs.org/wiki/Underload) and based on [Joy](http://www.latrobe.edu.au/humanities/research/research-projects/past-projects/joy-programming-language).
 
-[Joy](https://en.wikipedia.org/wiki/Joy_(programming_language)), invented by Manfred von Thun in 2001, is a stack-based, concatenative, purely functional programming language. Dipdup is a subset of Joy. From the 202 commands in Joy, I chose four: `dip`, `dup`, `pop`, and `cons`, and denoted them by four symbols: `^`, `_`, `!`, and `:`.
+[Joy](https://en.wikipedia.org/wiki/Joy_(programming_language)), invented by Manfred von Thun in 2001, is a stack-based, concatenative, purely functional programming language. Dipdup is a subset of Joy. From the 202 commands in Joy, I chose four: `dip`, `dup`, `pop`, and `cons`, and represented them with four symbols: `^`, `_`, `!`, and `:`.
 
 ## Stack
 
@@ -24,7 +24,7 @@ Like `cons` is Lisp, or `:` is Haskell. If the original stack is `...b[a]`, the 
 
 ### `dip`
 
-This one is a little complecated. If the original stack is `...cb[a]`, it first pops `b` and `[a]`, then executes `[a]` as a program on the stack `...c`, and finally pushes `b` back. `dip` is written as `^` in DipDup.
+This one is a little complicated. If the original stack is `...cb[a]`, it will first pop `b` and `[a]`, then execute `[a]` as a program on the stack `...c`, and finally push `b` back. `dip` is written as `^` in DipDup.
 
 ### Lists
 
@@ -56,7 +56,7 @@ Every character except `^`, `_`, `!`, `:`, `[` and `]` is a no-op.
 _^!
 ```
 
-Like `i` in Joy or `^` in Underload. If the original stack is `...b[a]`, then it will execute `a` as a program on the stack `...b`.
+Like `i` in Joy or `^` in Underload. If the original stack is `...b[a]`, it will execute `a` as a program on the stack `...b`.
 
 ### Swap
 
@@ -88,10 +88,10 @@ To show that DipDup is Turing complete, it suffices to implement the three primi
 [[[[[_]^^]^_^!_^!]::]:]
 ```
 
-This proof is inspired by [a proof of Turing completeness of Underload](http://esolangs.org/wiki/Underload#Unlambda_to_Underload).
+This proof is inspired by [a proof of the Turing completeness of Underload](http://esolangs.org/wiki/Underload#Unlambda_to_Underload).
 
 ## About This Interpreter
 
 This interpreter is written in Haskell. It depends on two packages: [`base`](http://hackage.haskell.org/package/base) and [`haskeline`](http://hackage.haskell.org/package/haskeline).
 
-Run the interpreter without any argument will start the REPL. You can also add a filename as the argument, and the interpreter will run the program in the file and print the result.
+Running the interpreter without any argument will start the REPL. You can also add a filename as the argument, and the interpreter will run the program in the file and print the result.
